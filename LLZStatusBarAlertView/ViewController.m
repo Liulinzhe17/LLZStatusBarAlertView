@@ -22,7 +22,7 @@
     [super viewDidLoad];
     self.navigationItem.title = @"LLZStatusBarAlertView";
     //show 按钮
-    UIButton *showBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2)-30, (SCREEN_HEIGHT/2)-15, 60, 30)];
+    UIButton *showBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2)-30, (SCREEN_HEIGHT/2)-105, 60, 30)];
     showBtn.backgroundColor = [UIColor blueColor];
     [showBtn setTitle:@"show" forState:UIControlStateNormal];
     showBtn.titleLabel.textColor = [UIColor redColor];
@@ -30,7 +30,7 @@
     [showBtn addTarget:self action:@selector(showView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:showBtn];
     //cancel 按钮
-    UIButton *cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 400, 70, 30)];
+    UIButton *cancelBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2)-30, (SCREEN_HEIGHT/2)-60, 60, 30)];
     cancelBtn.backgroundColor = [UIColor blueColor];
     [cancelBtn setTitle:@"cancel" forState:UIControlStateNormal];
     cancelBtn.titleLabel.textColor = [UIColor redColor];
@@ -39,7 +39,7 @@
     [self.view addSubview:cancelBtn];
     
     //跳转 按钮
-    UIButton *nextBtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 450, 70, 30)];
+    UIButton *nextBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2)-30, (SCREEN_HEIGHT/2)-15, 60, 30)];
     nextBtn.backgroundColor = [UIColor blueColor];
     [nextBtn setTitle:@"跳转" forState:UIControlStateNormal];
     nextBtn.titleLabel.textColor = [UIColor redColor];
@@ -54,7 +54,7 @@
 //    [[LLZStatusBarAlertView sharedView]setDismissTransitTime:0.7];
 //    [[LLZStatusBarAlertView sharedView]setShowTransitTime:2.0];
 //    [[LLZStatusBarAlertView sharedView]showWithStatus:@"HELLO WORLD!"];
-    [[LLZStatusBarAlertView sharedView]showWithStatus:@"123" delay:4];
+    [[LLZStatusBarAlertView sharedView]showWithStatus:@"更新了100条数据" delay:10];
 }
 
 - (void)cancelView{

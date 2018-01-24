@@ -7,6 +7,8 @@
 //
 
 #import "LLZStatusBarAlertView.h"
+#define isiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+#define STATUSBAR_HEIGHT [UIApplication sharedApplication].statusBarFrame.size.height
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define LLZRGBA(r, g, b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
 
@@ -35,7 +37,7 @@
     static dispatch_once_t once;
     static LLZStatusBarAlertView *sharedView;
     dispatch_once(&once,^{
-        sharedView = [[LLZStatusBarAlertView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
+        sharedView = [[LLZStatusBarAlertView alloc]initWithFrame:CGRectMake(0, -STATUSBAR_HEIGHT, SCREEN_WIDTH,STATUSBAR_HEIGHT)];
     });
     
     return sharedView;
@@ -44,7 +46,7 @@
 #pragma mark - *******lazily loading*******
 - (UIWindow *)overlayWindow {
     if(!_overlayWindow) {
-        _overlayWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+        _overlayWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBAR_HEIGHT)];
         _overlayWindow.backgroundColor = [UIColor clearColor];
         _overlayWindow.userInteractionEnabled = NO;
         _overlayWindow.windowLevel = UIWindowLevelStatusBar;
@@ -54,7 +56,12 @@
 
 - (UILabel *)XMNotes {
     if (!_XMNotes) {
-        _XMNotes = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH *1/6, 0, SCREEN_WIDTH *4/6, 20)];
+        if (isiPhoneX) {
+             _XMNotes = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH *1/6, 30, SCREEN_WIDTH *4/6, STATUSBAR_HEIGHT-30)];
+            _XMNotes.font = [UIFont systemFontOfSize:13];
+        }else{
+            _XMNotes = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH *1/6, 0, SCREEN_WIDTH *4/6, STATUSBAR_HEIGHT)];
+        }
         _XMNotes.textAlignment = NSTextAlignmentCenter;
     }
     return _XMNotes;
@@ -128,7 +135,7 @@
     self.backgroundColor = barColor;
     
     [UIView animateWithDuration:self.showTransitTime animations:^{
-        [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+        [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUSBAR_HEIGHT)];
     } completion:^(BOOL finished){
         self.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
     }];
@@ -146,7 +153,7 @@
     //视图开始消失
     self.isDismissing = YES;
     [UIView animateWithDuration:self.dismissTransitTime animations:^{
-        [self setFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
+        [self setFrame:CGRectMake(0, -STATUSBAR_HEIGHT, SCREEN_WIDTH, STATUSBAR_HEIGHT)];
     } completion:^(BOOL finished){
         [self removeFromSuperview];
         self.overlayWindow = nil;
