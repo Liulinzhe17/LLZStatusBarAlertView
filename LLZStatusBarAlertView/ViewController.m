@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LLZStatusBarAlertView.h"
+#import "AViewController.h"
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -19,6 +20,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.title = @"LLZStatusBarAlertView";
     //show 按钮
     UIButton *showBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2)-30, (SCREEN_HEIGHT/2)-15, 60, 30)];
     showBtn.backgroundColor = [UIColor blueColor];
@@ -34,19 +36,36 @@
     cancelBtn.titleLabel.textColor = [UIColor redColor];
     cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [cancelBtn addTarget:self action:@selector(cancelView) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:cancelBtn];
+    [self.view addSubview:cancelBtn];
+    
+    //跳转 按钮
+    UIButton *nextBtn = [[UIButton alloc]initWithFrame:CGRectMake(100, 450, 70, 30)];
+    nextBtn.backgroundColor = [UIColor blueColor];
+    [nextBtn setTitle:@"跳转" forState:UIControlStateNormal];
+    nextBtn.titleLabel.textColor = [UIColor redColor];
+    nextBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [nextBtn addTarget:self action:@selector(showAVC) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:nextBtn];
 }
 
 - (void)showView{
     NSLog(@"*******show*******");
 //    [[LLZStatusBarAlertView sharedView]showWithStatus:@"hello world" textColor:[UIColor whiteColor] barColor:[UIColor greenColor] delay:3];
-    [[LLZStatusBarAlertView sharedView]showWithStatus:@"HELLO WORLD!"];
-    [[LLZStatusBarAlertView sharedView]setShowTransitTime:1.0 dismissTransitTime:1.0];
+//    [[LLZStatusBarAlertView sharedView]setDismissTransitTime:0.7];
+//    [[LLZStatusBarAlertView sharedView]setShowTransitTime:2.0];
+//    [[LLZStatusBarAlertView sharedView]showWithStatus:@"HELLO WORLD!"];
+    [[LLZStatusBarAlertView sharedView]showWithStatus:@"123" delay:4];
 }
 
 - (void)cancelView{
     NSLog(@"*******cancel*******");
     [[LLZStatusBarAlertView sharedView]dismiss];
+}
+
+- (void)showAVC{
+    AViewController *AVC = [[AViewController alloc]init];
+//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:AVC];
+    [self.navigationController pushViewController:AVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

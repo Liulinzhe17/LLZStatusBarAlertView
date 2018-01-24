@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4195C1502004D37800512947 /* AViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4195C14F2004D37800512947 /* AViewController.m */; };
 		41D2643E1FFC79B7001DBF5A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D2643D1FFC79B7001DBF5A /* AppDelegate.m */; };
 		41D264411FFC79B7001DBF5A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D264401FFC79B7001DBF5A /* ViewController.m */; };
 		41D264441FFC79B7001DBF5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41D264421FFC79B7001DBF5A /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4195C14E2004D37800512947 /* AViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AViewController.h; sourceTree = "<group>"; };
+		4195C14F2004D37800512947 /* AViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AViewController.m; sourceTree = "<group>"; };
 		41D264391FFC79B7001DBF5A /* LLZStatusBarAlertView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LLZStatusBarAlertView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		41D2643C1FFC79B7001DBF5A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		41D2643D1FFC79B7001DBF5A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -67,6 +70,8 @@
 				41D2643D1FFC79B7001DBF5A /* AppDelegate.m */,
 				41D2643F1FFC79B7001DBF5A /* ViewController.h */,
 				41D264401FFC79B7001DBF5A /* ViewController.m */,
+				4195C14E2004D37800512947 /* AViewController.h */,
+				4195C14F2004D37800512947 /* AViewController.m */,
 				41D264421FFC79B7001DBF5A /* Main.storyboard */,
 				41D264451FFC79B7001DBF5A /* Assets.xcassets */,
 				41D264471FFC79B7001DBF5A /* LaunchScreen.storyboard */,
@@ -148,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				41D264541FFC7D42001DBF5A /* LLZStatusBarAlertView.m in Sources */,
+				4195C1502004D37800512947 /* AViewController.m in Sources */,
 				41D264411FFC79B7001DBF5A /* ViewController.m in Sources */,
 				41D2644C1FFC79B7001DBF5A /* main.m in Sources */,
 				41D2643E1FFC79B7001DBF5A /* AppDelegate.m in Sources */,

@@ -25,6 +25,8 @@
  */
 @property(nonatomic,readwrite,assign)CGFloat dismissTransitTime;
 
+@property(nonatomic,strong)NSTimer *timer;
+
 @end
 
 @implementation LLZStatusBarAlertView
@@ -33,13 +35,13 @@
     static dispatch_once_t once;
     static LLZStatusBarAlertView *sharedView;
     dispatch_once(&once,^{
-        sharedView = [[LLZStatusBarAlertView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
+        sharedView = [[LLZStatusBarAlertView alloc]initWithFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
     });
     
     return sharedView;
 }
 
-#pragma mark - *******lazy loading*******
+#pragma mark - *******lazily loading*******
 - (UIWindow *)overlayWindow {
     if(!_overlayWindow) {
         _overlayWindow = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
@@ -107,10 +109,12 @@
 }
 
 - (void)showWithStatus: (NSString *)status textColor:(UIColor *)textColor barColor:(UIColor *)barColor delay:(CGFloat)delay {
+    self.isDismissing = NO;
     if (self.isShowing) {
         NSLog(@"*******isshowing!!!*******");
-        return;
+        return;//视图正在显示
     }
+    //视图开始显示
     self.isShowing = YES;
     //判断view是否已加入UIWindow
     if (!self.superview) {
@@ -126,8 +130,7 @@
     [UIView animateWithDuration:self.showTransitTime animations:^{
         [self setFrame:CGRectMake(0, 0, SCREEN_WIDTH, 20)];
     } completion:^(BOOL finished){
-        sleep(delay);
-        [self dismiss];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:delay target:self selector:@selector(dismiss) userInfo:nil repeats:NO];
     }];
     
     [self setNeedsLayout];
@@ -135,10 +138,12 @@
 
 - (void)dismiss{
     self.isShowing = NO;
+    [self.timer invalidate];
     if (self.isDismissing) {
-        NSLog(@"*******isdismissing*******");
-        return;
+        NSLog(@"*******isdismissing!!*******");
+        return;//视图正在消失
     }
+    //视图开始消失
     self.isDismissing = YES;
     [UIView animateWithDuration:self.dismissTransitTime animations:^{
         [self setFrame:CGRectMake(0, -20, SCREEN_WIDTH, 20)];
