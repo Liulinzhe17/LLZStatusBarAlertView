@@ -1,7 +1,7 @@
 
-![](https://github.com/Liulinzhe17/LLZStatusBarAlertView/master/iPhone8.png)
+![](https://raw.githubusercontent.com/Liulinzhe17/LLZStatusBarAlertView/master/iPhone8.png)
 
-![](https://github.com/Liulinzhe17/LLZStatusBarAlertView/master/iPhoneX.png)
+![](https://raw.githubusercontent.com/Liulinzhe17/LLZStatusBarAlertView/master/iPhoneX.png)
 
 ### 使用方法
 
