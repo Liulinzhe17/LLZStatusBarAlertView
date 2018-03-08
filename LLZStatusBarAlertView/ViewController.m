@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "LLZStatusBarAlertView.h"
-#import "AViewController.h"
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
@@ -37,15 +36,6 @@
     cancelBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
     [cancelBtn addTarget:self action:@selector(cancelView) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:cancelBtn];
-    
-    //跳转 按钮
-    UIButton *nextBtn = [[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH/2)-30, (SCREEN_HEIGHT/2)-15, 60, 30)];
-    nextBtn.backgroundColor = [UIColor blueColor];
-    [nextBtn setTitle:@"跳转" forState:UIControlStateNormal];
-    nextBtn.titleLabel.textColor = [UIColor redColor];
-    nextBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [nextBtn addTarget:self action:@selector(showAVC) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:nextBtn];
 }
 
 - (void)showView{
@@ -54,18 +44,12 @@
 //    [[LLZStatusBarAlertView sharedView]setDismissTransitTime:0.7];
 //    [[LLZStatusBarAlertView sharedView]setShowTransitTime:2.0];
 //    [[LLZStatusBarAlertView sharedView]showWithStatus:@"HELLO WORLD!"];
-    [[LLZStatusBarAlertView sharedView]showWithStatus:@"更新了100条数据" delay:10];
+    [[LLZStatusBarAlertView sharedView]showWithStatus:@"hello" textColor:[UIColor redColor] barColor:[UIColor blueColor] delay:2];
 }
 
 - (void)cancelView{
     NSLog(@"*******cancel*******");
     [[LLZStatusBarAlertView sharedView]dismiss];
-}
-
-- (void)showAVC{
-    AViewController *AVC = [[AViewController alloc]init];
-//    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:AVC];
-    [self.navigationController pushViewController:AVC animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
